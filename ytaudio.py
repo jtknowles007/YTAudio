@@ -8,16 +8,14 @@ import youtube_dl
 playlisturl = sys.argv[1]
 playlistdir = sys.argv[2]
 
-# Add / to the directory if not present
-if playlistdir[-1] != '/':
-    playlistdir = playlistdir+'/'
+playlistdir = playlistdir.rstrip('/')
 
 # Create directory if not present
 if not os.path.isdir(playlistdir):
     os.mkdir(playlistdir)
 
 # Format filename for saved audio files
-output = '{}%(playlist_index)s-%(title)s.%(ext)s'.format(playlistdir)
+output = '{}/%(playlist_index)s-%(title)s.%(ext)s'.format(playlistdir)
 
 # Output options
 options = {
