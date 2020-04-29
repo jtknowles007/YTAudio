@@ -8,7 +8,7 @@ Call the script with the Youtube playlist URL as [argv1] and the path/directory 
 ```
 
 # Output
-The script will use youtube_dl to download each video file in the playlist to the specified directory, then ffmpeg will convert the video to an mp3.  Once the conversion is complete, the video file is deleted.  Saved mp3 files are named as PlaylistIndex_Title.mp3
+The script will use youtube_dl to download each video file in the playlist to the specified directory, then ffmpeg will convert the video to an mp3.  Once the conversion is complete, the video file is deleted.  Saved mp3 files are named as PlaylistIndex-Title.mp3
 
 # Example:
 ```
