@@ -16,8 +16,10 @@ if playlistdir[-1] != '/':
 if not os.path.isdir(playlistdir):
     os.mkdir(playlistdir)
 
-# Output options
+# Format filename for saved audio files
 output = '{}%(playlist_index)s-%(title)s.%(ext)s'.format(playlistdir)
+
+# Output options
 options = {
         'format':'bestaudio/best',
         'postprocessors':[{
