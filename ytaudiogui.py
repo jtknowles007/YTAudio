@@ -2,6 +2,9 @@
 
 import os
 import sys
+import threading
+import time
+import queue
 import PySimpleGUI as sg
 import youtube_dl
 
@@ -33,19 +36,23 @@ def dlfunct(playlisturl,playlistdir):
             ydl.cache.remove()
             ydl.download([playlisturl])
 
-window = sg.Window('YTaudio',
+def the_gui():
+    window = sg.Window('YTaudio',
             [[sg.Text('Playlist URL')],
             [sg.In()],
             [sg.Text('Directory Name')],
             [sg.In()],
+            [sg.Text('Window will close once conversion complete.')],
             [sg.Button('Go'), sg.Button('Close')]], location=(0,0))
-while True:
-    event,values = window.read()
-    if event in (None,'Close'):
-        break
-    elif event in ('Go'):
+    while True:
+        event,values = window.read()
+        if event in (None,'Close'):
+            window.close()
+            break
         plurl = values[0] 
         pldir = values[1]
         dlfunct(plurl,pldir)
-window.close()
+        window.close()
 
+if __name__ == '__main__':
+    the_gui()
