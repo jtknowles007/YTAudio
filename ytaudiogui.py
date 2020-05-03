@@ -2,9 +2,6 @@
 
 import os
 import sys
-import threading
-import time
-import queue
 import PySimpleGUI as sg
 import youtube_dl
 
@@ -42,8 +39,8 @@ def the_gui():
             [sg.In()],
             [sg.Text('Directory Name')],
             [sg.In()],
-            [sg.Text('Window will close once conversion complete.')],
-            [sg.Button('Go'), sg.Button('Close')]], location=(0,0))
+            [sg.T('Window will close when downloads complete', size=(45,1))],
+            [sg.Button('Go', bind_return_key=True), sg.Button('Close')]], location=(0,0)).Finalize()
     while True:
         event,values = window.read()
         if event in (None,'Close'):
