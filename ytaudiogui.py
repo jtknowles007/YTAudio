@@ -39,14 +39,18 @@ def dlfunct(playlisturl,playlistdir,q):
             q.put('Complete')
 
 def the_gui():
-    sg.theme('Light Brown 3')
+    sg.theme('Light Grey 3')
     gui_queue = queue.Queue()
     window = sg.Window('YTaudio',
-            [[sg.Text('Playlist URL')],
+            [
+            [sg.Text('YTAudio - Generate MP3s from Youtube Playlists')],
+            [sg.Text('')],
+            [sg.Text('Enter Youtube Playlist URL')],
             [sg.In()],
-            [sg.Text('Directory Name')],
+            [sg.Text('Enter Name of Save Directory')],
             [sg.In()],
-            [sg.Output(size=(70, 12),key='outkey')],
+            [sg.Text('Download and Conversion Status')],
+            [sg.Output(size=(45, 5),key='outkey')],
             [sg.Button('Run', bind_return_key=True), sg.Button('Close')]], location=(0,0))
     while True:
         event,values = window.read(timeout=100)
