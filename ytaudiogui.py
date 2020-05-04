@@ -6,6 +6,14 @@ import queue
 import threading
 import PySimpleGUI as sg
 import youtube_dl
+import polymodule as pm
+
+def getcolors():
+    colordict = {}
+    for i in range(0,16):
+        thecolor = "color" + str(i)
+        colordict[thecolor] = pm.pycolors(thecolor)
+    return colordict
 
 def dlfunct(playlisturl,playlistdir,q):
         theplaylist = '/home/john/Music/{}'.format(playlistdir)
@@ -40,11 +48,20 @@ def dlfunct(playlisturl,playlistdir,q):
 
 def the_gui():
     sg.theme('Light Grey 3')
+    sg.theme_background_color(colors['color0'])
+    sg.theme_text_element_background_color(colors['color0'])
+    sg.theme_input_background_color(colors['color8'])
+    sg.theme_text_color(colors['color7'])
+    sg.theme_input_text_color(colors['color0'])
+    sg.theme_button_color((colors['color0'],colors['color4']))
+
+    
+
     gui_queue = queue.Queue()
     window = sg.Window('YTaudio',
             [
-            [sg.Text('YTAudio - Generate MP3s from Youtube Playlists')],
-            [sg.Text('')],
+            [sg.Text('YTAudio', font='Hack 14')],
+            [sg.Text('Generate MP3s from Youtube Playlists')],
             [sg.Text('Enter Youtube Playlist URL')],
             [sg.In()],
             [sg.Text('Enter Name of Save Directory')],
@@ -71,4 +88,5 @@ def the_gui():
     
 
 if __name__ == '__main__':
+    colors = getcolors()
     the_gui()
